@@ -1,0 +1,30 @@
+﻿@using System.Globalization
+@model IEnumerable<GestaoDeContas.Models.RelatorioDespesasMensaisViewModel>
+
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Relatório de Despesas Mensais por Categoria</h2>
+
+    <a href="/Relatorios/ExportarPdf" class="btn btn-danger" style="margin-bottom: 10px;">Exportar PDF</a>
+    <a href="/Relatorios/ExportarExcel" class="btn btn-success" style="margin-bottom: 10px;">Exportar Excel</a>
+    <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+        <tr>
+            <th>Categoria</th>
+            <th>Mês</th>
+            <th>Ano</th>
+            <th>Valor Total</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Categoria</td>
+                <td>@CultureInfo.CurrentCulture.TextInfo.ToTitleCase(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(item.Mes))</td>
+                <td>@item.Ano</td>
+                <td>R$ @item.ValorTotal.ToString("F2")</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

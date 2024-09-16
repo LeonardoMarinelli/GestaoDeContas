@@ -1,0 +1,36 @@
+﻿@model GestaoDeContas.Models.Cartao
+
+<h2>Criar Novo Cartão</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label>Banco</label>
+        <select asp-for="Banco" class="form-control">
+            <option value="">Selecione um Banco</option>
+            <option value="Banco do Brasil">Banco do Brasil</option>
+            <option value="Bradesco">Bradesco</option>
+            <option value="Caixa Econômica Federal">Caixa Econômica Federal</option>
+            <option value="Itaú">Itaú</option>
+            <option value="Nubank">Nubank</option>
+            <option value="Santander">Santander</option>
+            <option value="Inter">Inter</option>
+            <option value="C6 Bank">C6 Bank</option>
+            <option value="Outros">Outros</option>
+        </select>
+        <span asp-validation-for="Banco" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="FinalCartao">Final do Cartão</label>
+        <input asp-for="FinalCartao" class="form-control" maxlength="4"/>
+    </div>
+    <div class="form-group">
+        <label>Limite</label>
+        <input type="number" step="0.01" min="0" class="form-control" asp-for="LimiteCartao" />
+        <span asp-validation-for="LimiteCartao" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="Anotacoes">Anotações</label>
+        <textarea asp-for="Anotacoes" class="form-control"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Salvar</button>
+</form>

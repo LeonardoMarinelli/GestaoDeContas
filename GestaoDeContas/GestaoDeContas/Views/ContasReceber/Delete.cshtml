@@ -1,0 +1,19 @@
+﻿@model GestaoDeContas.Models.ContaReceber
+
+<h2>Excluir Recebimento</h2>
+
+<h3>Tem certeza que deseja excluir este recebimento?</h3>
+
+<div>
+    <h4>@Model.Descricao</h4>
+    <p>Valor: @Model.Valor</p>
+    <p>Data de Recebimento: @Model.DataRecebimento.ToShortDateString()</p>
+    <p>Status: @(Model.Status ? "Recebida" : "Pendente")</p>
+    <p>Categoria: @Model.Categoria</p>
+</div>
+
+<form asp-action="DeleteConfirmed" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Excluir</button>
+    <a href="/Views/ContasReceber/Index.cshtml" class="btn btn-secondary">Cancelar</a>
+</form>

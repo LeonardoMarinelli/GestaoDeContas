@@ -1,0 +1,26 @@
+﻿@model GestaoDeContas.Models.Cartao
+
+<h2>Editar Cartão</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+    <!-- Campos iguais ao formulário de criação -->
+    <!-- Similar ao Create.cshtml -->
+    <div class="form-group">
+        <label for="Banco">Banco</label>
+        <input asp-for="Banco" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="FinalCartao">Final do Cartão</label>
+        <input asp-for="FinalCartao" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="LimiteCartao">Limite</label>
+        <input asp-for="LimiteCartao" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="Anotacoes">Anotações</label>
+        <textarea asp-for="Anotacoes" class="form-control"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Salvar</button>
+</form>

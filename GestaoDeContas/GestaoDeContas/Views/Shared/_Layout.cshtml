@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ContasApp</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/Views/css/site.css" />
+</head>
+<body>
+    <header>
+        @if (!(ViewContext.RouteData.Values["controller"]?.ToString() == "Account" 
+               && (ViewContext.RouteData.Values["action"]?.ToString() == "Login" 
+                   || ViewContext.RouteData.Values["action"]?.ToString() == "Register"))
+             && !Context.Request.Path.Value!.Equals("/"))
+        {
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="/">ContasApp</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/ContasPagar/Index">Contas a Pagar</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/ContasReceber/Index">Contas a Receber</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Cartao/Index">Cartões de Crédito</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/ComprasCartao/Index">Compras no Cartão</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Relatorios/Index">Relatórios</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        }
+    </header>
+
+    <div class="container">
+        @RenderBody()
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

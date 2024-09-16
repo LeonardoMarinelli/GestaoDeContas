@@ -1,0 +1,59 @@
+﻿.table-dark {
+    background-color: #343a40;
+    color: white;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.table-success {
+    background-color: #d4edda !important;
+    color: #155724;
+}
+
+.table-warning {
+    background-color: #fff3cd !important;
+    color: #856404;
+}
+
+.badge-success {
+    background-color: #28a745;
+}
+
+.badge-warning {
+    background-color: #ffc107;
+}
+
+.btn {
+    margin-right: 5px;
+}
+
+.btn-warning {
+    background-color: #ffc107;
+    border: none;
+    color: black;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border: none;
+    color: white;
+}
+
+h2 {
+    color: #343a40;
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.table {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+body {
+    background-color: #847f7f; !important;
+}

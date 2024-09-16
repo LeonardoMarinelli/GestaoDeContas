@@ -1,0 +1,78 @@
+﻿@{
+    ViewData["Title"] = "Relatório de Saldo entre Contas a Pagar e Contas a Receber";
+    var saldo = ViewBag.Saldo;
+    var saldoPositivo = saldo >= 0;
+}
+
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Relatório de Saldo entre Contas a Pagar e Contas a Receber</h2>
+
+    <a href="/Relatorios/ExportarSaldoPagarReceberPdf" class="btn btn-danger" style="margin-bottom: 10px;">Exportar PDF</a>
+    <a href="/Relatorios/ExportarSaldoPagarReceberExcel" class="btn btn-success" style="margin-bottom: 10px;">Exportar Excel</a>
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Contas a Pagar</h3>
+            <table class="table table-bordered table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Categoria</th>
+                        <th>Valor Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in ViewBag.ContasPagar)
+                    {
+                        <tr>
+                            <td>@item.Categoria</td>
+                            <td>R$ @item.ValorTotal</td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Total:</th>
+                        <th>R$ @ViewBag.TotalPagar</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <div class="col-md-6">
+            <h3>Contas a Receber</h3>
+            <table class="table table-bordered table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Categoria</th>
+                        <th>Valor Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in ViewBag.ContasReceber)
+                    {
+                        <tr>
+                            <td>@item.Categoria</td>
+                            <td>R$ @item.ValorTotal</td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Total:</th>
+                        <th>R$ @ViewBag.TotalReceber</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <h3>
+                Saldo: 
+                <span style="color: @(saldoPositivo ? "green" : "red")">
+                    R$ @saldo
+                </span>
+            </h3>
+        </div>
+    </div>
+</div>

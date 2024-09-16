@@ -1,0 +1,11 @@
+﻿@model GestaoDeContas.Models.Cartao
+
+<h2>Excluir Cartão</h2>
+
+<p>Tem certeza que deseja excluir o cartão de <strong>@Model.Banco</strong> com final <strong>@Model.FinalCartao</strong>?</p>
+
+<form asp-action="DeleteConfirmed" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Excluir</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

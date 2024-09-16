@@ -1,0 +1,43 @@
+﻿@model IEnumerable<GestaoDeContas.Models.CompraCartao>
+
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Compras com Cartão de Crédito</h2>
+    <a href="/ComprasCartao/Create" class="btn btn-success mb-3">Adicionar Nova Compra</a>
+
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
+        <tr>
+            <th>Data</th>
+            <th>Descrição</th>
+            <th>Categoria</th>
+            <th>Valor Total</th>
+            <th>Número de Parcelas</th>
+            <th>Valor por Parcela</th>
+            <th>Cartão (Final)</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var compra in Model)
+        {
+            <tr>
+                <td>@compra.DataCompra.ToString("dd/MM/yyyy")</td>
+                <td>@compra.Descricao</td>
+                <td>@compra.Categoria</td>
+                <td>@compra.Valor</td>
+                <td>@compra.NumeroParcelas</td>
+                <td>@compra.ValorParcela</td>
+                <td>@compra.Cartao.FinalCartao</td>
+                <td>
+                    <a href="/ComprasCartao/Edit/@compra.Id" class="btn btn-warning btn-sm">
+                        <i class="bi bi-pencil-square"></i>Editar
+                    </a>
+                    <a href="/ComprasCartao/Delete/@compra.Id" class="btn btn-danger btn-sm">
+                        <i class="bi bi-trash"></i>Excluir
+                    </a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

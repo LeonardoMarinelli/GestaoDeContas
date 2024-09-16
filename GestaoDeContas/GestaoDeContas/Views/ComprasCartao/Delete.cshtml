@@ -1,0 +1,11 @@
+﻿@model GestaoDeContas.Models.CompraCartao
+
+<h2>Excluir Compra</h2>
+
+<p>Tem certeza que deseja excluir a compra <strong>@Model.Descricao</strong> realizada em <strong>@Model.DataCompra.ToString("dd/MM/yyyy")</strong>?</p>
+
+<form asp-action="DeleteConfirmed" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Excluir</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

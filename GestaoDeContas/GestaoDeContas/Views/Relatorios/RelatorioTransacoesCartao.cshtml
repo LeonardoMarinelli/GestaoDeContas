@@ -1,0 +1,53 @@
+﻿@model IEnumerable<GestaoDeContas.Models.RelatorioCartaoViewModel>
+
+@{
+    ViewData["Title"] = "Relatório de Transações por Cartão";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Relatório de Transações por Cartão de Crédito</h2>
+    
+    <a href="/Relatorios/ExportarTransacoesCartaoPdf" class="btn btn-danger" style="margin-bottom: 10px;">Exportar PDF</a>
+    <a href="/Relatorios/ExportarTransacoesCartaoExcel" class="btn btn-success" style="margin-bottom: 10px;">Exportar Excel</a>
+    @foreach (var item in Model)
+    {
+        var cartao = item.Cartao;
+        var compras = item.Compras;
+        var totalGastos = compras.Sum(c => c.Valor);
+        var limiteDisponivel = cartao.LimiteCartao - totalGastos;
+
+        <h3>Cartão: @cartao.Banco - Final: @cartao.FinalCartao</h3>
+        <p><strong>Anotações:</strong> @cartao.Anotacoes</p>
+
+        <table class="table table-bordered table-hover">
+            <thead class="table-dark">
+            <tr>
+                <th>Categoria</th>
+                <th>Data</th>
+                <th>Descrição</th>
+                <th>Valor</th>
+                <th>Parcelada</th>
+                <th>Número de Parcelas</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var compra in compras)
+            {
+                <tr>
+                    <td>@compra.Categoria</td>
+                    <td>@compra.DataCompra.ToString("dd/MM/yyyy")</td>
+                    <td>@compra.Descricao</td>
+                    <td>R$ @compra.Valor.ToString("F2")</td>
+                    <td>@(compra.Parcelada ? "Sim" : "Não")</td>
+                    <td>@(compra.Parcelada ? compra.NumeroParcelas : "-")</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+
+        <p><strong>Total Gasto:</strong> R$ @totalGastos.ToString("F2")</p>
+        <p><strong>Limite Total:</strong> R$ @cartao.LimiteCartao.ToString("F2")</p>
+        <p><strong>Limite Disponível:</strong> R$ @limiteDisponivel.ToString("F2")</p>
+        <hr/>
+    }
+</div>

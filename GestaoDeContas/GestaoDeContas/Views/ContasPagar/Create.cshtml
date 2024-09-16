@@ -1,0 +1,58 @@
+﻿@model GestaoDeContas.Models.ContaPagar
+
+<h2>Criar Nova Conta</h2>
+
+<form asp-action="Create" method="post">
+    @Html.AntiForgeryToken()
+    
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group">
+        <label>Descrição</label>
+        <input type="text" class="form-control" asp-for="Descricao" />
+        <span asp-validation-for="Descricao" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Valor</label>
+        <input type="number" step="0.01" min="0" class="form-control" asp-for="Valor" />
+        <span asp-validation-for="Valor" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Data de Vencimento</label>
+        <input type="date" class="form-control" asp-for="DataVencimento" />
+        <span asp-validation-for="DataVencimento" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Status</label>
+        <select class="form-control" asp-for="Status">
+            <option value="true">Paga</option>
+            <option value="false">Pendente</option>
+        </select>
+        <span asp-validation-for="Status" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Categoria</label>
+        <select asp-for="Categoria" class="form-control">
+            <option value="">Selecione uma Categoria</option>
+            <option value="Alimentação">Alimentação</option>
+            <option value="Moradia">Moradia</option>
+            <option value="Transporte">Transporte</option>
+            <option value="Lazer">Lazer</option>
+            <option value="Saúde">Saúde</option>
+            <option value="Educação">Educação</option>
+            <option value="Outros">Outros</option>
+        </select>
+        <span asp-validation-for="Categoria" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Salvar</button>
+</form>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+}
